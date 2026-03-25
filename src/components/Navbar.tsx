@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -20,13 +21,18 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-xl bg-background/80"
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        <a href="#" className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-lg bg-gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground text-lg">
+        <a href="#" className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-xl bg-gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground text-lg shadow-elegant">
             P
           </div>
-          <span className="font-display text-xl font-bold text-foreground">
-            Prep<span className="text-gradient">X</span> Infotech
-          </span>
+          <div className="flex flex-col">
+            <span className="font-display text-xl font-bold text-foreground leading-tight">
+              Prep<span className="text-gradient">X</span>
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-body font-medium -mt-0.5">
+              Infotech
+            </span>
+          </div>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
@@ -34,25 +40,29 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
           <a
             href="#contact"
-            className="px-5 py-2.5 rounded-lg bg-gradient-primary text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity"
+            className="px-6 py-2.5 rounded-xl bg-gradient-primary text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity shadow-elegant"
           >
             Get Started
           </a>
         </div>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-foreground"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-foreground"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -69,7 +79,7 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors font-medium"
                 >
                   {link.label}
                 </a>
@@ -77,7 +87,7 @@ const Navbar = () => {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="px-5 py-2.5 rounded-lg bg-gradient-primary text-center text-sm font-semibold text-primary-foreground"
+                className="px-5 py-2.5 rounded-xl bg-gradient-primary text-center text-sm font-semibold text-primary-foreground"
               >
                 Get Started
               </a>
