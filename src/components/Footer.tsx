@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <a href="#" className="flex items-center">
-            <img src={logo} alt="PrepX Infotech" className="h-9 w-auto" />
+            <img src={logo} alt="PrepX Infotech" className="h-12 w-auto" />
           </a>
           <div className="flex items-center gap-8 text-sm text-muted-foreground font-body">
             <a href="#services" className="hover:text-foreground transition-colors font-medium">Services</a>
