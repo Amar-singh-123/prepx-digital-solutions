@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -21,18 +22,8 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-xl bg-background/80"
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        <a href="#" className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-gradient-primary flex items-center justify-center font-display font-bold text-primary-foreground text-lg shadow-elegant">
-            P
-          </div>
-          <div className="flex flex-col">
-            <span className="font-display text-xl font-bold text-foreground leading-tight">
-              Prep<span className="text-gradient">X</span>
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-body font-medium -mt-0.5">
-              Infotech
-            </span>
-          </div>
+        <a href="#" className="flex items-center">
+          <img src={logo} alt="PrepX Infotech" className="h-10 w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
