@@ -23,7 +23,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         <a href="#" className="flex items-center">
-          <img src={logo} alt="PrepX Infotech" className="h-10 w-auto" />
+          <img src={logo} alt="PrepX Infotech" className="h-14 w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
