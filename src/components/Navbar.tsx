@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import logoIcon from "@/assets/logo-icon.png";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Careers", href: "#careers" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Industries", to: "/industries" },
+  { label: "Portfolio", to: "/portfolio" },
+  { label: "Hire Developers", to: "/hire-developers" },
+  { label: "Careers", to: "/careers" },
 ];
 
 const Navbar = () => {
@@ -22,6 +24,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    `px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+      isActive
+        ? "text-primary bg-accent/60"
+        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+    }`;
+
   return (
     <motion.nav
       initial={{ y: -20, opacity: 0 }}
@@ -30,11 +39,11 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "border-b border-border/60 glass bg-background/70 shadow-card"
-          : "bg-transparent"
+          : "bg-background/40 glass"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-3 px-6">
-        <a href="#" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group">
           <img
             src={logoIcon}
             alt="PrepX Infotech"
@@ -48,34 +57,31 @@ const Navbar = () => {
               Infotech
             </span>
           </div>
-        </a>
+        </Link>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-lg transition-all duration-200"
-            >
+            <NavLink key={link.label} to={link.to} className={linkClass}>
               {link.label}
-            </a>
+            </NavLink>
           ))}
           <div className="ml-3 mr-2">
             <ThemeToggle />
           </div>
-          <a
-            href="#contact"
-            className="ml-1 px-6 py-2.5 rounded-lg bg-gradient-primary text-sm font-semibold text-primary-foreground hover:opacity-90 transition-all glow-primary"
+          <Link
+            to="/contact"
+            className="ml-1 px-5 py-2.5 rounded-full bg-gradient-primary text-sm font-semibold text-primary-foreground hover:opacity-90 transition-all glow-primary"
           >
-            Get Started
-          </a>
+            Consult Our Experts
+          </Link>
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-foreground p-1.5 rounded-lg hover:bg-accent/50 transition-colors"
+            aria-label="Toggle menu"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -88,26 +94,32 @@ const Navbar = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden overflow-hidden glass bg-card/90 border-t border-border/60"
+            className="lg:hidden overflow-hidden glass bg-card/90 border-t border-border/60"
           >
             <div className="flex flex-col gap-1 p-5">
               {navLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.label}
-                  href={link.href}
+                  to={link.to}
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all font-medium"
+                  className={({ isActive }) =>
+                    `px-4 py-3 rounded-lg transition-all font-medium ${
+                      isActive
+                        ? "text-primary bg-accent/60"
+                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                    }`
+                  }
                 >
                   {link.label}
-                </a>
+                </NavLink>
               ))}
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="mt-2 px-5 py-3 rounded-lg bg-gradient-primary text-center text-sm font-semibold text-primary-foreground glow-primary"
+                className="mt-2 px-5 py-3 rounded-full bg-gradient-primary text-center text-sm font-semibold text-primary-foreground glow-primary"
               >
-                Get Started
-              </a>
+                Consult Our Experts
+              </Link>
             </div>
           </motion.div>
         )}
