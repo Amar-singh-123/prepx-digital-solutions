@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Code2, Globe, TrendingUp, Award } from "lucide-react";
 
 const HeroSection = () => {
@@ -103,19 +104,19 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.45 }}
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="group px-8 py-4 rounded-full bg-gradient-primary font-semibold text-primary-foreground hover:opacity-95 transition-all flex items-center gap-2.5 glow-primary text-sm"
           >
             Consult Our Experts
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a
-            href="#projects"
+          </Link>
+          <Link
+            to="/portfolio"
             className="px-8 py-4 rounded-full border border-border bg-card/70 glass text-foreground font-semibold hover:border-primary/40 hover:shadow-hover transition-all text-sm"
           >
             View Our Work
-          </a>
+          </Link>
         </motion.div>
 
         {/* Trusted by strip */}

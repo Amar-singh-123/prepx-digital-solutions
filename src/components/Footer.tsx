@@ -1,5 +1,6 @@
 import logoIcon from "@/assets/logo-icon.png";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <a href="#" className="flex items-center gap-3 mb-5">
+            <Link to="/" className="flex items-center gap-3 mb-5">
               <img
                 src={logoIcon}
                 alt="PrepX Infotech"
@@ -24,7 +25,7 @@ const Footer = () => {
                   Infotech
                 </span>
               </div>
-            </a>
+            </Link>
             <p className="text-sm text-muted-foreground font-body leading-relaxed max-w-xs">
               Building digital products that scale. Software development, EdTech solutions, and IT consulting.
             </p>
@@ -35,22 +36,25 @@ const Footer = () => {
             <h4 className="font-display font-bold text-sm text-foreground mb-5">Quick Links</h4>
             <div className="space-y-3">
               {[
-                { label: "Services", href: "#services" },
-                { label: "Projects", href: "#projects" },
-                { label: "Pricing", href: "#pricing" },
-                { label: "Careers", href: "#careers" },
-                { label: "Contact", href: "#contact" },
+                { label: "About", to: "/about" },
+                { label: "Services", to: "/services" },
+                { label: "Industries", to: "/industries" },
+                { label: "Portfolio", to: "/portfolio" },
+                { label: "Hire Developers", to: "/hire-developers" },
+                { label: "Careers", to: "/careers" },
+                { label: "Contact", to: "/contact" },
               ].map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.to}
                   className="block text-sm text-muted-foreground hover:text-primary transition-colors font-body font-medium"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
+
 
           {/* Services */}
           <div>
