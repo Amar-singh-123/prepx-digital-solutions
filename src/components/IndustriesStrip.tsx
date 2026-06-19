@@ -1,42 +1,34 @@
-import { motion } from "framer-motion";
-import { Building2, GraduationCap, ShoppingBag, HeartPulse, Wallet, Truck } from "lucide-react";
-
 const industries = [
-  { icon: Building2, name: "SaaS & Startups", desc: "MVPs, product engineering, scaling architectures." },
-  { icon: GraduationCap, name: "Education & EdTech", desc: "LMS, admission, student & coaching platforms." },
-  { icon: ShoppingBag, name: "E-Commerce & Retail", desc: "Storefronts, marketplaces, order management." },
-  { icon: HeartPulse, name: "Healthcare", desc: "Practice management, telehealth, patient portals." },
-  { icon: Wallet, name: "Fintech", desc: "Dashboards, integrations, compliance-aware builds." },
-  { icon: Truck, name: "Logistics & Operations", desc: "ERP, CRM, internal tools and automation." },
+  { name: "SaaS & Startups", desc: "MVPs, product engineering, scaling architectures." },
+  { name: "Education & EdTech", desc: "LMS, admissions, student & coaching platforms." },
+  { name: "E-Commerce & Retail", desc: "Storefronts, marketplaces, order management." },
+  { name: "Healthcare", desc: "Practice management, telehealth, patient portals." },
+  { name: "Fintech", desc: "Dashboards, integrations, compliance-aware builds." },
+  { name: "Logistics & Operations", desc: "ERP, CRM, internal tools and automation." },
 ];
 
 const IndustriesStrip = () => (
-  <section className="py-24 border-y border-border/60">
+  <section className="py-24 border-b border-border">
     <div className="container mx-auto px-6">
-      <div className="max-w-2xl mb-12">
-        <span className="inline-block text-[11px] uppercase tracking-[0.22em] text-primary font-semibold mb-4">
-          Industries We Serve
-        </span>
-        <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground tracking-tight">
-          Domain experience across regulated and fast-moving sectors
-        </h2>
+      <div className="grid lg:grid-cols-12 gap-10 mb-12">
+        <div className="lg:col-span-5">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">§ Industries</div>
+          <h2 className="font-display text-4xl md:text-5xl leading-[1.05] text-foreground">
+            Domains we know <em className="italic text-accent-ink">deeply</em>.
+          </h2>
+        </div>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div className="border-t border-border">
         {industries.map((it, i) => (
-          <motion.div
+          <div
             key={it.name}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.04 }}
-            className="p-6 rounded-xl border border-border bg-card hover:border-primary/30 transition-colors"
+            className="grid grid-cols-12 gap-6 py-6 border-b border-border items-baseline group hover:bg-secondary/50 transition-colors px-2 -mx-2"
           >
-            <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center mb-4">
-              <it.icon className="w-5 h-5 text-primary" />
-            </div>
-            <h3 className="font-display font-semibold text-foreground mb-1.5">{it.name}</h3>
-            <p className="text-sm text-muted-foreground font-body">{it.desc}</p>
-          </motion.div>
+            <div className="col-span-1 font-display text-lg text-muted-foreground">{String(i + 1).padStart(2, "0")}</div>
+            <div className="col-span-11 md:col-span-5 font-display text-2xl md:text-3xl text-foreground">{it.name}</div>
+            <div className="col-span-12 md:col-span-6 text-sm text-muted-foreground leading-relaxed">{it.desc}</div>
+          </div>
         ))}
       </div>
     </div>

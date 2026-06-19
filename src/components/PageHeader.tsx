@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
 
 interface Props {
   eyebrow?: string;
@@ -12,64 +10,30 @@ interface Props {
 
 const PageHeader = ({ eyebrow, title, highlight, description, breadcrumb }: Props) => {
   return (
-    <section className="relative pt-36 pb-20 overflow-hidden bg-gradient-hero border-b border-border/60">
-      <div className="absolute inset-0 mesh-gradient opacity-70" />
-      <div
-        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.08]"
-        style={{
-          backgroundImage:
-            "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
-      <div className="container relative z-10 mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground mb-6 font-medium"
-        >
+    <section className="pt-36 pb-20 border-b border-border">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-10">
           <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-          <ChevronRight className="w-3 h-3" />
+          <span>/</span>
           <span className="text-foreground">{breadcrumb ?? title}</span>
-        </motion.div>
+        </div>
 
-        {eyebrow && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="text-[11px] uppercase tracking-[0.3em] text-primary font-bold mb-4"
-          >
-            {eyebrow}
-          </motion.p>
-        )}
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.6 }}
-          className="font-display font-extrabold tracking-tight leading-[1.05] text-foreground text-4xl md:text-6xl max-w-4xl mx-auto"
-        >
-          {title}
-          {highlight && (
-            <>
-              {" "}
-              <span className="text-gradient-premium">{highlight}</span>
-            </>
+        <div className="grid lg:grid-cols-12 gap-10 items-end">
+          <div className="lg:col-span-8">
+            {eyebrow && (
+              <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-5">§ {eyebrow}</div>
+            )}
+            <h1 className="font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.98] tracking-[-0.02em] text-foreground">
+              {title}
+              {highlight && <> <em className="italic text-accent-ink">{highlight}</em></>}
+            </h1>
+          </div>
+          {description && (
+            <div className="lg:col-span-4">
+              <p className="text-base text-muted-foreground leading-relaxed">{description}</p>
+            </div>
           )}
-        </motion.h1>
-
-        {description && (
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.6 }}
-            className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-          >
-            {description}
-          </motion.p>
-        )}
+        </div>
       </div>
     </section>
   );

@@ -1,109 +1,104 @@
 import logoIcon from "@/assets/logo-icon.png";
-import { Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border/60 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-subtle" />
-
-      <div className="container relative mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-5">
-              <img
-                src={logoIcon}
-                alt="PrepX Infotech"
-                className="h-11 w-11 rounded-full object-cover ring-2 ring-primary/20"
-              />
-              <div className="flex flex-col">
-                <span className="font-display text-lg font-bold text-foreground leading-tight tracking-tight">
-                  Prep<span className="text-gradient">X</span>
-                </span>
-                <span className="text-[9px] uppercase tracking-[0.25em] text-muted-foreground font-body font-medium -mt-0.5">
-                  Infotech
-                </span>
-              </div>
-            </Link>
-            <p className="text-sm text-muted-foreground font-body leading-relaxed max-w-xs">
-              Building digital products that scale. Software development, EdTech solutions, and IT consulting.
-            </p>
+    <footer className="border-t border-border bg-background">
+      <div className="container mx-auto px-6 pt-20 pb-10">
+        {/* Big editorial mark */}
+        <div className="grid lg:grid-cols-12 gap-10 mb-20">
+          <div className="lg:col-span-7">
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.0] text-foreground">
+              Let's build something{" "}
+              <em className="italic text-accent-ink">worth keeping</em>.
+            </h2>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-display font-bold text-sm text-foreground mb-5">Quick Links</h4>
-            <div className="space-y-3">
-              {[
-                { label: "About", to: "/about" },
-                { label: "Services", to: "/services" },
-                { label: "Industries", to: "/industries" },
-                { label: "Portfolio", to: "/portfolio" },
-                { label: "Hire Developers", to: "/hire-developers" },
-                { label: "Careers", to: "/careers" },
-                { label: "Contact", to: "/contact" },
-              ].map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.to}
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors font-body font-medium"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-
-          {/* Services */}
-          <div>
-            <h4 className="font-display font-bold text-sm text-foreground mb-5">Services</h4>
-            <div className="space-y-3">
-              {[
-                "Software Development",
-                "EdTech Solutions",
-                "Mobile Apps",
-                "Digital Marketing",
-                "IT Consulting",
-              ].map((s) => (
-                <span key={s} className="block text-sm text-muted-foreground font-body">
-                  {s}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-display font-bold text-sm text-foreground mb-5">Contact</h4>
-            <div className="space-y-3">
-              {[
-                { icon: Mail, text: "hello@prepxinfotech.com", href: "mailto:hello@prepxinfotech.com" },
-                { icon: Phone, text: "+91 95040 07442", href: "tel:+919504007442" },
-                { icon: MapPin, text: "India", href: null as string | null },
-              ].map((item) => (
-                <div key={item.text} className="flex items-center gap-2.5 text-sm text-muted-foreground font-body">
-                  <item.icon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                  {item.href ? (
-                    <a href={item.href} className="hover:text-primary transition-colors">{item.text}</a>
-                  ) : (
-                    item.text
-                  )}
-                </div>
-              ))}
-            </div>
+          <div className="lg:col-span-4 lg:col-start-9 flex flex-col justify-end">
+            <a
+              href="mailto:hello@prepxinfotech.com"
+              className="font-display text-2xl text-foreground hover:text-primary transition-colors block mb-2"
+            >
+              hello@prepxinfotech.com
+            </a>
+            <a
+              href="tel:+919504007442"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors block mb-1"
+            >
+              +91 95040 07442
+            </a>
+            <a
+              href="https://www.linkedin.com/company/prepxinfotech"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              linkedin.com/company/prepxinfotech
+            </a>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 pt-7 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground font-body">
-            © {new Date().getFullYear()} PrepX Infotech. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6 text-xs text-muted-foreground font-body">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+        {/* Link columns */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 pt-10 border-t border-border">
+          <div>
+            <Link to="/" className="flex items-center gap-2.5 mb-4">
+              <img src={logoIcon} alt="PrepX Infotech" className="h-8 w-8 rounded-full object-cover" />
+              <span className="font-display text-lg text-foreground">PrepX Infotech</span>
+            </Link>
+            <p className="text-xs text-muted-foreground leading-relaxed max-w-[16rem]">
+              Software development & technology consulting for startups, growing businesses, and enterprises.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">Company</h4>
+            <ul className="space-y-2">
+              {[
+                { label: "About", to: "/about" },
+                { label: "Careers", to: "/careers" },
+                { label: "Portfolio", to: "/portfolio" },
+                { label: "Contact", to: "/contact" },
+              ].map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} className="text-sm text-foreground/80 hover:text-primary transition-colors">{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">Services</h4>
+            <ul className="space-y-2">
+              {[
+                { label: "Web Applications", to: "/services" },
+                { label: "Enterprise Software", to: "/services" },
+                { label: "MVP Development", to: "/services" },
+                { label: "AI & Automation", to: "/services" },
+                { label: "Hire Developers", to: "/hire-developers" },
+              ].map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} className="text-sm text-foreground/80 hover:text-primary transition-colors">{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">Industries</h4>
+            <ul className="space-y-2">
+              {["SaaS & Startups", "Education", "Healthcare", "Fintech", "Logistics"].map((l) => (
+                <li key={l}>
+                  <Link to="/industries" className="text-sm text-foreground/80 hover:text-primary transition-colors">{l}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} PrepX Infotech. All rights reserved.</p>
+          <div className="flex items-center gap-6 text-xs text-muted-foreground">
+            <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
+            <a href="#" className="hover:text-foreground transition-colors">Terms</a>
           </div>
         </div>
       </div>

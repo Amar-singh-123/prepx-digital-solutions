@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
@@ -19,42 +18,32 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
+    const handler = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-      isActive
-        ? "text-primary bg-accent/60"
-        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+    `px-3 py-2 text-[13px] font-medium tracking-tight transition-colors ${
+      isActive ? "text-primary" : "text-foreground/70 hover:text-foreground"
     }`;
 
   return (
-    <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-border/60 glass bg-background/70 shadow-card"
-          : "bg-background/40 glass"
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 bg-background transition-shadow ${
+        scrolled ? "border-b border-border" : "border-b border-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-3 px-6">
-        <Link to="/" className="flex items-center gap-3 group">
+      <div className="container mx-auto flex items-center justify-between py-4 px-6">
+        <Link to="/" className="flex items-center gap-3">
           <img
             src={logoIcon}
             alt="PrepX Infotech"
-            className="h-11 w-11 rounded-full object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300 shadow-elegant"
+            className="h-9 w-9 rounded-full object-cover"
           />
-          <div className="flex flex-col">
-            <span className="font-display text-lg font-bold text-foreground leading-tight tracking-tight">
-              Prep<span className="text-gradient">X</span>
-            </span>
-            <span className="text-[9px] uppercase tracking-[0.25em] text-muted-foreground font-body font-medium -mt-0.5">
-              Infotech
+          <div className="flex flex-col leading-none">
+            <span className="font-display text-xl text-foreground tracking-tight">
+              PrepX <span className="italic text-accent-ink">Infotech</span>
             </span>
           </div>
         </Link>
@@ -70,9 +59,9 @@ const Navbar = () => {
           </div>
           <Link
             to="/contact"
-            className="ml-1 px-5 py-2.5 rounded-full bg-gradient-primary text-sm font-semibold text-primary-foreground hover:opacity-90 transition-all glow-primary"
+            className="ml-1 px-5 py-2.5 bg-foreground text-background text-[13px] font-medium hover:bg-primary transition-colors"
           >
-            Consult Our Experts
+            Contact
           </Link>
         </div>
 
@@ -80,7 +69,7 @@ const Navbar = () => {
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-foreground p-1.5 rounded-lg hover:bg-accent/50 transition-colors"
+            className="text-foreground p-1.5"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -88,43 +77,34 @@ const Navbar = () => {
         </div>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden overflow-hidden glass bg-card/90 border-t border-border/60"
-          >
-            <div className="flex flex-col gap-1 p-5">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.label}
-                  to={link.to}
-                  onClick={() => setIsOpen(false)}
-                  className={({ isActive }) =>
-                    `px-4 py-3 rounded-lg transition-all font-medium ${
-                      isActive
-                        ? "text-primary bg-accent/60"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
-                    }`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-              <Link
-                to="/contact"
+      {isOpen && (
+        <div className="lg:hidden border-t border-border bg-background">
+          <div className="flex flex-col gap-1 p-5">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.label}
+                to={link.to}
                 onClick={() => setIsOpen(false)}
-                className="mt-2 px-5 py-3 rounded-full bg-gradient-primary text-center text-sm font-semibold text-primary-foreground glow-primary"
+                className={({ isActive }) =>
+                  `px-4 py-3 transition-colors font-medium text-sm ${
+                    isActive ? "text-primary" : "text-foreground/80 hover:text-foreground"
+                  }`
+                }
               >
-                Consult Our Experts
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+                {link.label}
+              </NavLink>
+            ))}
+            <Link
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-2 px-5 py-3 bg-foreground text-center text-sm font-medium text-background"
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 
