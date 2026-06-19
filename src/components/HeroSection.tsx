@@ -1,175 +1,148 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Code2, Globe, TrendingUp, Award } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16">
-      {/* Soft background */}
-      <div className="absolute inset-0 bg-gradient-hero" />
+    <section className="relative overflow-hidden pt-32 pb-24 border-b border-border/60">
+      <div className="absolute inset-0 bg-gradient-subtle" />
 
-      {/* Perspective grid floor */}
+      {/* Subtle grid */}
       <div
-        className="absolute inset-x-0 bottom-0 h-[60%] opacity-[0.07] dark:opacity-[0.12]"
+        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.07]"
         style={{
           backgroundImage:
             "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-          maskImage: "linear-gradient(to top, black 0%, transparent 90%)",
-          WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 90%)",
-          transform: "perspective(800px) rotateX(60deg)",
-          transformOrigin: "bottom",
+          backgroundSize: "44px 44px",
+          maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
         }}
       />
 
-      {/* Floating 3D-ish gradient shapes */}
-      <motion.div
-        initial={{ opacity: 0, x: -40, y: -20 }}
-        animate={{ opacity: 1, x: 0, y: 0 }}
-        transition={{ duration: 1 }}
-        className="hidden md:block absolute top-[18%] left-[4%] w-44 h-44 rounded-[2.2rem] rotate-[18deg] shadow-2xl animate-float"
-        style={{
-          background:
-            "linear-gradient(135deg, #ff8ec7 0%, #ffb37a 40%, #ffd25c 100%)",
-        }}
-      />
-      <motion.div
-        initial={{ opacity: 0, x: 60, y: -30 }}
-        animate={{ opacity: 1, x: 0, y: 0 }}
-        transition={{ duration: 1, delay: 0.15 }}
-        className="hidden md:block absolute top-[10%] right-[5%] w-56 h-56 rounded-[2.5rem] -rotate-[22deg] shadow-2xl animate-float"
-        style={{
-          animationDelay: "1.2s",
-          background:
-            "linear-gradient(135deg, #8ee0ff 0%, #a78bfa 50%, #f472b6 100%)",
-        }}
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 0.9, scale: 1 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        className="hidden lg:block absolute bottom-[14%] right-[12%] w-24 h-24 rounded-full shadow-xl animate-float"
-        style={{
-          animationDelay: "0.6s",
-          background:
-            "linear-gradient(135deg, hsl(217 91% 60%), hsl(230 80% 55%))",
-        }}
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 0.85, scale: 1 }}
-        transition={{ duration: 1, delay: 0.4 }}
-        className="hidden lg:block absolute bottom-[22%] left-[10%] w-16 h-16 rounded-2xl rotate-12 shadow-xl animate-float"
-        style={{ background: "linear-gradient(135deg, #34d399, #10b981)" }}
-      />
-
-      <div className="container relative z-10 mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-card/70 glass mb-8 shadow-card"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-primary" />
-          <span className="text-xs font-semibold text-foreground uppercase tracking-[0.18em] font-body">
-            Award-Winning Software Studio · Est. 2020
-          </span>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="font-display font-extrabold tracking-tight leading-[0.98] text-foreground text-[clamp(2.6rem,7vw,5.75rem)] max-w-6xl mx-auto"
-        >
-          Engineering the <span className="text-gradient-premium">Future</span> of
-          <br className="hidden sm:block" /> Digital{" "}
-          <span className="text-gradient-premium">Products</span> & AI
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-8 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed font-body"
-        >
-          PrepX Infotech is a global technology company building scalable software,
-          EdTech platforms, mobile apps, and AI-driven solutions. Hire dedicated
-          engineers from <span className="font-bold text-primary">$10/hr</span>.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <Link
-            to="/contact"
-            className="group px-8 py-4 rounded-full bg-gradient-primary font-semibold text-primary-foreground hover:opacity-95 transition-all flex items-center gap-2.5 glow-primary text-sm"
-          >
-            Consult Our Experts
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            to="/portfolio"
-            className="px-8 py-4 rounded-full border border-border bg-card/70 glass text-foreground font-semibold hover:border-primary/40 hover:shadow-hover transition-all text-sm"
-          >
-            View Our Work
-          </Link>
-        </motion.div>
-
-        {/* Trusted by strip */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
-          className="mt-20"
-        >
-          <p className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground font-semibold mb-6">
-            Trusted by industry leaders and innovators
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 opacity-70">
-            {["CERTIK", "Coinccino", "PHANTASMA", "SeedX", "TARALITY", "INRx", "MERKLECHAIN"].map(
-              (b) => (
-                <span
-                  key={b}
-                  className="text-sm md:text-base font-display font-bold tracking-wider text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {b}
-                </span>
-              ),
-            )}
-          </div>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85, duration: 0.8 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
-        >
-          {[
-            { icon: Globe, value: "50+", label: "Projects Delivered" },
-            { icon: TrendingUp, value: "30+", label: "Happy Clients" },
-            { icon: Code2, value: "15+", label: "Tech Stacks" },
-            { icon: Award, value: "99%", label: "Client Satisfaction" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="p-5 rounded-2xl bg-card/70 glass border border-border/60 hover:border-primary/30 hover:shadow-hover transition-all duration-300 group text-left"
+      <div className="container relative z-10 mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card mb-7"
             >
-              <stat.icon className="w-5 h-5 text-primary mb-3 group-hover:scale-110 transition-transform" />
-              <div className="text-2xl md:text-3xl font-bold font-display text-foreground">
-                {stat.value}
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.18em]">
+                IT Services & IT Consulting · Est. 2022
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-display font-bold tracking-tight leading-[1.05] text-foreground text-[clamp(2.25rem,5.2vw,4rem)]"
+            >
+              Software development and{" "}
+              <span className="text-gradient">engineering teams</span> for ambitious businesses.
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed font-body"
+            >
+              PrepX Infotech partners with startups, growing businesses, and enterprises to build
+              custom software, modernize systems, and extend engineering capacity with flexible,
+              outcome-driven engagement models.
+            </motion.p>
+
+            <motion.ul
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-7 grid sm:grid-cols-2 gap-2.5 max-w-lg"
+            >
+              {[
+                "Custom Software & Product Engineering",
+                "Dedicated Engineering Teams",
+                "Web, Mobile, SaaS, ERP & CRM",
+                "Digital Transformation & Consulting",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2.5 text-sm text-foreground/80 font-body">
+                  <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                  {t}
+                </li>
+              ))}
+            </motion.ul>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4"
+            >
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-all"
+              >
+                Request a Consultation
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-border bg-card text-foreground font-semibold text-sm hover:border-primary/40 transition-all"
+              >
+                Explore Services
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Company snapshot card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-5"
+          >
+            <div className="rounded-2xl border border-border bg-card shadow-card p-7">
+              <div className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-semibold mb-5">
+                Company Snapshot
               </div>
-              <div className="text-xs text-muted-foreground mt-1 font-body font-medium">
-                {stat.label}
+              <dl className="grid grid-cols-2 gap-x-6 gap-y-5">
+                {[
+                  { k: "Founded", v: "2022" },
+                  { k: "Industry", v: "IT Services & Consulting" },
+                  { k: "Headquarters", v: "India" },
+                  { k: "Engagements", v: "Project · Dedicated · T&M" },
+                ].map((i) => (
+                  <div key={i.k}>
+                    <dt className="text-[11px] uppercase tracking-wider text-muted-foreground font-body">
+                      {i.k}
+                    </dt>
+                    <dd className="text-sm font-semibold text-foreground font-display mt-1">
+                      {i.v}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="mt-6 pt-6 border-t border-border/60 space-y-2 text-sm font-body">
+                <a href="mailto:hello@prepxinfotech.com" className="block text-foreground hover:text-primary transition-colors">
+                  hello@prepxinfotech.com
+                </a>
+                <a href="tel:+919504007442" className="block text-foreground hover:text-primary transition-colors">
+                  +91 95040 07442
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/prepxinfotech"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block text-muted-foreground hover:text-primary transition-colors"
+                >
+                  linkedin.com/company/prepxinfotech
+                </a>
               </div>
             </div>
-          ))}
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
