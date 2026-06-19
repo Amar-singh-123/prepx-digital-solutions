@@ -1,55 +1,40 @@
-import { motion } from "framer-motion";
-
-const technologies = [
-  "React", "Next.js", "Vue.js", "Angular", "Node.js", "Python",
-  "Django", "Flutter", "React Native", "AWS", "Docker", "PostgreSQL",
-  "MongoDB", "Firebase", "TypeScript", "Tailwind CSS", "GraphQL", "Redis",
+const groups = [
+  { label: "Frontend", items: ["React", "Next.js", "Vue", "TypeScript", "Tailwind CSS"] },
+  { label: "Backend", items: ["Node.js", "Python", "Django", "GraphQL", "REST"] },
+  { label: "Mobile", items: ["Flutter", "React Native", "iOS", "Android"] },
+  { label: "Cloud & Data", items: ["AWS", "Docker", "PostgreSQL", "MongoDB", "Redis", "Firebase"] },
 ];
 
 const TechStackSection = () => {
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 divider-gradient" />
+    <section className="py-24 border-b border-border">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-10 mb-12">
+          <div className="lg:col-span-5">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">§ Stack</div>
+            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] text-foreground">
+              Modern tools, chosen <em className="italic text-accent-ink">on purpose</em>.
+            </h2>
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7 flex items-end">
+            <p className="text-base text-muted-foreground leading-relaxed">
+              We're framework-agnostic and pick the stack that fits your product, team, and operating
+              environment — never the other way around.
+            </p>
+          </div>
+        </div>
 
-      <div className="container relative mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/60 text-primary text-xs font-semibold uppercase tracking-[0.2em] font-body mb-5">
-            Tech Arsenal
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold font-display tracking-tight">
-            Technologies We <span className="text-gradient">Master</span>
-          </h2>
-        </motion.div>
-
-        {/* Scrolling tech ribbon */}
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex gap-3 flex-wrap justify-center"
-          >
-            {technologies.map((tech, i) => (
-              <motion.div
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.03 }}
-                className="px-5 py-2.5 rounded-xl bg-card border border-border/60 text-sm font-semibold text-foreground font-body shadow-card hover:shadow-hover hover:border-primary/25 hover:bg-accent/30 transition-all duration-300 cursor-default"
-              >
-                {tech}
-              </motion.div>
-            ))}
-          </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 border-t border-border">
+          {groups.map((g) => (
+            <div key={g.label} className="p-8 border-b md:[&:nth-child(odd)]:border-r lg:[&:nth-child(-n+4)]:border-r lg:last:border-r-0 border-border">
+              <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-5">{g.label}</div>
+              <ul className="space-y-2">
+                {g.items.map((t) => (
+                  <li key={t} className="font-display text-xl text-foreground">{t}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,127 +1,54 @@
-import { motion } from "framer-motion";
-import {
-  Code2,
-  GraduationCap,
-  Lightbulb,
-  Users,
-  Globe,
-  Smartphone,
-  ArrowUpRight,
-} from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 
 const services = [
-  {
-    icon: Code2,
-    title: "Custom Software Development",
-    description:
-      "Full-stack development across all technologies — web apps, enterprise systems, APIs, and cloud-native solutions tailored to your business.",
-    color: "from-primary/10 to-primary/5",
-  },
-  {
-    icon: GraduationCap,
-    title: "EdTech Digital Solutions",
-    description:
-      "Purpose-built platforms for coaching centers, private colleges, and schools — student portals, LMS, admission systems, and mobile apps.",
-    color: "from-primary/10 to-primary/5",
-  },
-  {
-    icon: Globe,
-    title: "Digital Marketing",
-    description:
-      "SEO, social media marketing, PPC campaigns, and brand strategy to establish your digital presence and drive measurable growth.",
-    color: "from-primary/10 to-primary/5",
-  },
-  {
-    icon: Lightbulb,
-    title: "IT Consulting",
-    description:
-      "Strategic technology consulting to modernize infrastructure, optimize workflows, and align IT with your business objectives.",
-    color: "from-primary/10 to-primary/5",
-  },
-  {
-    icon: Users,
-    title: "Hire Dedicated Developers",
-    description:
-      "Access pre-vetted developers on an hourly basis ($10–$30/hr) across any technology stack — scale your team instantly.",
-    color: "from-primary/10 to-primary/5",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile App Development",
-    description:
-      "Native and cross-platform mobile applications for iOS and Android — from concept to App Store deployment.",
-    color: "from-primary/10 to-primary/5",
-  },
+  { n: "01", title: "Custom Software Development", desc: "Web applications, internal tools, APIs and cloud-native systems engineered for your domain — built to ship, scale, and stay maintainable." },
+  { n: "02", title: "Enterprise & SaaS Platforms", desc: "Multi-tenant SaaS, ERP and CRM platforms with role-based access, integrations, dashboards, and operational reporting." },
+  { n: "03", title: "Mobile Application Development", desc: "Native and cross-platform iOS and Android apps with clean architecture, smooth UX, and reliable release pipelines." },
+  { n: "04", title: "MVP & Startup Product Engineering", desc: "Idea to launch in focused milestones — pragmatic scope, weekly demos, and an architecture that can grow with you." },
+  { n: "05", title: "AI & Intelligent Automation", desc: "LLM-powered workflows, document understanding, internal copilots, and pragmatic automations grounded in your real processes." },
+  { n: "06", title: "Hire Dedicated Developers", desc: "Pre-vetted engineers and full pods working as an extension of your team — transparent reporting and flexible hourly engagements." },
 ];
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 mesh-gradient opacity-50" />
-      <div className="absolute top-0 left-0 right-0 divider-gradient" />
+    <section id="services" className="py-24 border-b border-border">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-10 mb-16">
+          <div className="lg:col-span-4">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">§ Services</div>
+            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] text-foreground">
+              What we <em className="italic text-accent-ink">do</em>.
+            </h2>
+          </div>
+          <div className="lg:col-span-7 lg:col-start-6 flex items-end">
+            <p className="text-base text-muted-foreground leading-relaxed max-w-xl">
+              An end-to-end engineering partner across the product lifecycle —
+              from early discovery and architecture to delivery, scale, and ongoing support.
+            </p>
+          </div>
+        </div>
 
-      <div className="container relative mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/60 text-primary text-xs font-semibold uppercase tracking-[0.2em] font-body mb-5">
-            What We Do
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold font-display tracking-tight">
-            Services We <span className="text-gradient">Offer</span>
-          </h2>
-          <p className="text-muted-foreground mt-5 max-w-xl mx-auto font-body leading-relaxed">
-            End-to-end technology solutions designed to transform your ideas into
-            scalable digital products.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          {services.map((service) => (
-            <motion.div
-              key={service.title}
-              variants={item}
-              className="group relative p-7 rounded-2xl bg-card border border-border/60 hover:border-primary/20 transition-all duration-300 shadow-card hover:shadow-hover cursor-pointer overflow-hidden"
+        <div className="grid md:grid-cols-2 border-t border-border">
+          {services.map((s, i) => (
+            <Link
+              to="/services"
+              key={s.n}
+              className={`group p-8 md:p-10 border-b border-border md:[&:nth-child(odd)]:border-r flex flex-col gap-6 hover:bg-secondary/60 transition-colors ${
+                i === services.length - 1 ? "md:border-b-0" : ""
+              } ${i === services.length - 2 ? "md:border-b-0" : ""}`}
             >
-              {/* Hover gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-subtle opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-6">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center border border-primary/10`}>
-                    <service.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                </div>
-                <h3 className="text-base font-semibold font-display text-foreground mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed font-body">
-                  {service.description}
-                </p>
+              <div className="flex items-start justify-between">
+                <span className="font-display text-2xl text-muted-foreground">{s.n}</span>
+                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
               </div>
-            </motion.div>
+              <div>
+                <h3 className="font-display text-2xl md:text-3xl text-foreground mb-3 leading-tight">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-md">{s.desc}</p>
+              </div>
+            </Link>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
