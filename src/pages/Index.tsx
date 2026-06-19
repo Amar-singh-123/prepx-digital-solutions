@@ -1,19 +1,19 @@
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
-import MarqueeStrip from "@/components/MarqueeStrip";
 import ServicesSection from "@/components/ServicesSection";
+import ProcessSection from "@/components/ProcessSection";
+import IndustriesStrip from "@/components/IndustriesStrip";
 import TechStackSection from "@/components/TechStackSection";
 import WhyUsSection from "@/components/WhyUsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
 
 const Index = () => (
   <Layout>
     <HeroSection />
-    <MarqueeStrip />
     <ServicesSection />
+    <ProcessSection />
+    <IndustriesStrip />
     <TechStackSection />
     <WhyUsSection />
-    <TestimonialsSection />
   </Layout>
 );
 

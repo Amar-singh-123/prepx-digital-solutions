@@ -79,13 +79,17 @@ const Footer = () => {
             <h4 className="font-display font-bold text-sm text-foreground mb-5">Contact</h4>
             <div className="space-y-3">
               {[
-                { icon: Mail, text: "contact@prepxinfotech.com" },
-                { icon: Phone, text: "+91 XXXXX XXXXX" },
-                { icon: MapPin, text: "India" },
+                { icon: Mail, text: "hello@prepxinfotech.com", href: "mailto:hello@prepxinfotech.com" },
+                { icon: Phone, text: "+91 95040 07442", href: "tel:+919504007442" },
+                { icon: MapPin, text: "India", href: null as string | null },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-2.5 text-sm text-muted-foreground font-body">
                   <item.icon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                  {item.text}
+                  {item.href ? (
+                    <a href={item.href} className="hover:text-primary transition-colors">{item.text}</a>
+                  ) : (
+                    item.text
+                  )}
                 </div>
               ))}
             </div>

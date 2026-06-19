@@ -45,8 +45,8 @@ const ContactSection = () => {
 
             <div className="space-y-4">
               {[
-                { icon: Mail, label: "Email", text: "contact@prepxinfotech.com" },
-                { icon: Phone, label: "Phone", text: "+91 XXXXX XXXXX" },
+                { icon: Mail, label: "Email", text: "hello@prepxinfotech.com" },
+                { icon: Phone, label: "Phone", text: "+91 95040 07442" },
                 { icon: MapPin, label: "Location", text: "India" },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border/60 shadow-card hover:shadow-hover hover:border-primary/15 transition-all duration-300 group">
