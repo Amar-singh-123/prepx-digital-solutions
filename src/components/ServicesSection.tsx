@@ -1,51 +1,34 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
 
 const services = [
-  { n: "01", title: "Custom Software Development", desc: "Web applications, internal tools, APIs and cloud-native systems engineered for your domain — built to ship, scale, and stay maintainable." },
-  { n: "02", title: "Enterprise & SaaS Platforms", desc: "Multi-tenant SaaS, ERP and CRM platforms with role-based access, integrations, dashboards, and operational reporting." },
-  { n: "03", title: "Mobile Application Development", desc: "Native and cross-platform iOS and Android apps with clean architecture, smooth UX, and reliable release pipelines." },
-  { n: "04", title: "MVP & Startup Product Engineering", desc: "Idea to launch in focused milestones — pragmatic scope, weekly demos, and an architecture that can grow with you." },
-  { n: "05", title: "AI & Intelligent Automation", desc: "LLM-powered workflows, document understanding, internal copilots, and pragmatic automations grounded in your real processes." },
-  { n: "06", title: "Hire Dedicated Developers", desc: "Pre-vetted engineers and full pods working as an extension of your team — transparent reporting and flexible hourly engagements." },
+  { n: "01", title: "Web App Development", desc: "Scalable, secure, and responsive web platforms built with modern frameworks to drive business growth." },
+  { n: "02", title: "Enterprise App Development", desc: "Complex backend architectures and business intelligence tools designed for organizational efficiency." },
+  { n: "03", title: "AI & Intelligent Automation", desc: "Leveraging machine learning and custom AI models to automate workflows and unlock predictive insights." },
+  { n: "04", title: "MVP Development", desc: "Rapid prototyping and lean development to bring your product vision to market and validate early." },
+  { n: "05", title: "Startup Product Dev", desc: "End-to-end technical partnership for founders, focusing on agility, UX excellence, and technical debt management." },
+  { n: "06", title: "Hire Freelancers", desc: "On-demand access to our vetted pool of specialized engineers, architects, and product designers." },
 ];
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-24 border-b border-border">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-10 mb-16">
-          <div className="lg:col-span-4">
-            <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">§ Services</div>
-            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] text-foreground">
-              What we <em className="italic text-accent-ink">do</em>.
-            </h2>
-          </div>
-          <div className="lg:col-span-7 lg:col-start-6 flex items-end">
-            <p className="text-base text-muted-foreground leading-relaxed max-w-xl">
-              An end-to-end engineering partner across the product lifecycle —
-              from early discovery and architecture to delivery, scale, and ongoing support.
-            </p>
-          </div>
+    <section id="services" className="py-24 px-6 lg:px-24 bg-surface">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-16">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-foreground">Service Spectrum</h2>
+          <div className="w-20 h-1.5 bg-primary" />
         </div>
 
-        <div className="grid md:grid-cols-2 border-t border-border">
-          {services.map((s, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+          {services.map((s) => (
             <Link
-              to="/services"
               key={s.n}
-              className={`group p-8 md:p-10 border-b border-border md:[&:nth-child(odd)]:border-r flex flex-col gap-6 hover:bg-secondary/60 transition-colors ${
-                i === services.length - 1 ? "md:border-b-0" : ""
-              } ${i === services.length - 2 ? "md:border-b-0" : ""}`}
+              to="/services"
+              className="bg-card p-10 lg:p-12 group hover:bg-ink hover:text-white transition-all duration-500 block"
             >
-              <div className="flex items-start justify-between">
-                <span className="font-display text-2xl text-muted-foreground">{s.n}</span>
-                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
-              </div>
-              <div>
-                <h3 className="font-display text-2xl md:text-3xl text-foreground mb-3 leading-tight">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-md">{s.desc}</p>
-              </div>
+              <div className="text-3xl mb-8 text-primary group-hover:text-white font-display font-bold">{s.n}</div>
+              <h3 className="text-xl md:text-2xl font-bold font-display mb-4">{s.title}</h3>
+              <p className="text-sm leading-relaxed opacity-80 mb-8">{s.desc}</p>
+              <div className="h-px w-full bg-foreground/10 group-hover:bg-white/20" />
             </Link>
           ))}
         </div>

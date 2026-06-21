@@ -1,57 +1,43 @@
 import logoIcon from "@/assets/logo-icon.png";
 import { Link } from "react-router-dom";
+import { Linkedin, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="container mx-auto px-6 pt-20 pb-10">
-        {/* Big editorial mark */}
-        <div className="grid lg:grid-cols-12 gap-10 mb-20">
-          <div className="lg:col-span-7">
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.0] text-foreground">
-              Let's build something{" "}
-              <em className="italic text-accent-ink">worth keeping</em>.
-            </h2>
-          </div>
-          <div className="lg:col-span-4 lg:col-start-9 flex flex-col justify-end">
-            <a
-              href="mailto:hello@prepxinfotech.com"
-              className="font-display text-2xl text-foreground hover:text-primary transition-colors block mb-2"
-            >
-              hello@prepxinfotech.com
-            </a>
-            <a
-              href="tel:+919504007442"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors block mb-1"
-            >
-              +91 95040 07442
-            </a>
-            <a
-              href="https://www.linkedin.com/company/prepxinfotech"
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              linkedin.com/company/prepxinfotech
-            </a>
-          </div>
-        </div>
-
-        {/* Link columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 pt-10 border-t border-border">
-          <div>
-            <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <img src={logoIcon} alt="PrepX Infotech" className="h-8 w-8 rounded-full object-cover" />
-              <span className="font-display text-lg text-foreground">PrepX Infotech</span>
+    <footer className="bg-ink text-white">
+      <div className="container mx-auto px-6 lg:px-24 pt-20 pb-10">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 pb-16 border-b border-white/10">
+          <div className="col-span-2">
+            <Link to="/" className="flex items-center gap-3 mb-5">
+              <img src={logoIcon} alt="PrepX Infotech" className="h-10 w-10 rounded-full object-cover" />
+              <span className="font-display text-xl font-bold">
+                PrepX <span className="text-primary">Infotech</span>
+              </span>
             </Link>
-            <p className="text-xs text-muted-foreground leading-relaxed max-w-[16rem]">
-              Software development & technology consulting for startups, growing businesses, and enterprises.
+            <p className="text-sm text-white/60 leading-relaxed max-w-xs mb-6">
+              Software development and technology consulting for startups, growing businesses, and enterprises.
             </p>
+            <div className="space-y-3 text-sm">
+              <a href="mailto:hello@prepxinfotech.com" className="flex items-center gap-3 text-white/80 hover:text-primary transition-colors">
+                <Mail className="w-4 h-4" /> hello@prepxinfotech.com
+              </a>
+              <a href="tel:+919504007442" className="flex items-center gap-3 text-white/80 hover:text-primary transition-colors">
+                <Phone className="w-4 h-4" /> +91 95040 07442
+              </a>
+              <a
+                href="https://www.linkedin.com/company/prepxinfotech"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-3 text-white/80 hover:text-primary transition-colors"
+              >
+                <Linkedin className="w-4 h-4" /> linkedin.com/company/prepxinfotech
+              </a>
+            </div>
           </div>
 
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">Company</h4>
-            <ul className="space-y-2">
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-primary mb-4 font-display font-bold">Company</h4>
+            <ul className="space-y-2.5">
               {[
                 { label: "About", to: "/about" },
                 { label: "Careers", to: "/careers" },
@@ -59,15 +45,15 @@ const Footer = () => {
                 { label: "Contact", to: "/contact" },
               ].map((l) => (
                 <li key={l.label}>
-                  <Link to={l.to} className="text-sm text-foreground/80 hover:text-primary transition-colors">{l.label}</Link>
+                  <Link to={l.to} className="text-sm text-white/70 hover:text-white transition-colors">{l.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">Services</h4>
-            <ul className="space-y-2">
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-primary mb-4 font-display font-bold">Services</h4>
+            <ul className="space-y-2.5">
               {[
                 { label: "Web Applications", to: "/services" },
                 { label: "Enterprise Software", to: "/services" },
@@ -76,29 +62,29 @@ const Footer = () => {
                 { label: "Hire Developers", to: "/hire-developers" },
               ].map((l) => (
                 <li key={l.label}>
-                  <Link to={l.to} className="text-sm text-foreground/80 hover:text-primary transition-colors">{l.label}</Link>
+                  <Link to={l.to} className="text-sm text-white/70 hover:text-white transition-colors">{l.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">Industries</h4>
-            <ul className="space-y-2">
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-primary mb-4 font-display font-bold">Industries</h4>
+            <ul className="space-y-2.5">
               {["SaaS & Startups", "Education", "Healthcare", "Fintech", "Logistics"].map((l) => (
                 <li key={l}>
-                  <Link to="/industries" className="text-sm text-foreground/80 hover:text-primary transition-colors">{l}</Link>
+                  <Link to="/industries" className="text-sm text-white/70 hover:text-white transition-colors">{l}</Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} PrepX Infotech. All rights reserved.</p>
-          <div className="flex items-center gap-6 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-            <a href="#" className="hover:text-foreground transition-colors">Terms</a>
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-white/50">© {new Date().getFullYear()} PrepX Infotech. All rights reserved.</p>
+          <div className="flex items-center gap-6 text-xs text-white/50">
+            <a href="#" className="hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms</a>
           </div>
         </div>
       </div>

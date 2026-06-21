@@ -24,14 +24,14 @@ const Navbar = () => {
   }, []);
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `px-3 py-2 text-[13px] font-medium tracking-tight transition-colors ${
-      isActive ? "text-primary" : "text-foreground/70 hover:text-foreground"
+    `px-3 py-2 text-[13px] font-semibold uppercase tracking-wider transition-colors ${
+      isActive ? "text-primary" : "text-foreground/70 hover:text-primary"
     }`;
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 bg-background transition-shadow ${
-        scrolled ? "border-b border-border" : "border-b border-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm transition-shadow ${
+        scrolled ? "border-b border-border shadow-card" : "border-b border-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
@@ -41,11 +41,9 @@ const Navbar = () => {
             alt="PrepX Infotech"
             className="h-9 w-9 rounded-full object-cover"
           />
-          <div className="flex flex-col leading-none">
-            <span className="font-display text-xl text-foreground tracking-tight">
-              PrepX <span className="italic text-accent-ink">Infotech</span>
-            </span>
-          </div>
+          <span className="font-display text-lg font-bold text-foreground tracking-tight">
+            PrepX <span className="text-primary">Infotech</span>
+          </span>
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">
@@ -59,7 +57,7 @@ const Navbar = () => {
           </div>
           <Link
             to="/contact"
-            className="ml-1 px-5 py-2.5 bg-foreground text-background text-[13px] font-medium hover:bg-primary transition-colors"
+            className="ml-1 px-5 py-2.5 bg-primary text-white text-[13px] font-semibold uppercase tracking-wider hover:bg-ink transition-colors"
           >
             Contact
           </Link>
@@ -86,8 +84,8 @@ const Navbar = () => {
                 to={link.to}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `px-4 py-3 transition-colors font-medium text-sm ${
-                    isActive ? "text-primary" : "text-foreground/80 hover:text-foreground"
+                  `px-4 py-3 transition-colors font-semibold text-sm uppercase tracking-wider ${
+                    isActive ? "text-primary" : "text-foreground/80 hover:text-primary"
                   }`
                 }
               >
@@ -97,7 +95,7 @@ const Navbar = () => {
             <Link
               to="/contact"
               onClick={() => setIsOpen(false)}
-              className="mt-2 px-5 py-3 bg-foreground text-center text-sm font-medium text-background"
+              className="mt-2 px-5 py-3 bg-primary text-white text-center text-sm font-semibold uppercase tracking-wider"
             >
               Contact
             </Link>

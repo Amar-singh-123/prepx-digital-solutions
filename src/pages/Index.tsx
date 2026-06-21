@@ -5,6 +5,7 @@ import ProcessSection from "@/components/ProcessSection";
 import IndustriesStrip from "@/components/IndustriesStrip";
 import TechStackSection from "@/components/TechStackSection";
 import WhyUsSection from "@/components/WhyUsSection";
+import ContactSection from "@/components/ContactSection";
 
 const Index = () => (
   <Layout>
@@ -14,6 +15,7 @@ const Index = () => (
     <IndustriesStrip />
     <TechStackSection />
     <WhyUsSection />
+    <ContactSection />
   </Layout>
 );
 
