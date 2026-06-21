@@ -1,36 +1,29 @@
 const groups = [
   { label: "Frontend", items: ["React", "Next.js", "Vue", "TypeScript", "Tailwind CSS"] },
-  { label: "Backend", items: ["Node.js", "Python", "Django", "GraphQL", "REST"] },
+  { label: "Backend", items: ["Node.js", "Python", "Django", "GraphQL", "REST APIs"] },
   { label: "Mobile", items: ["Flutter", "React Native", "iOS", "Android"] },
-  { label: "Cloud & Data", items: ["AWS", "Docker", "PostgreSQL", "MongoDB", "Redis", "Firebase"] },
+  { label: "Cloud & Data", items: ["AWS", "Docker", "PostgreSQL", "MongoDB", "Redis"] },
 ];
 
 const TechStackSection = () => {
   return (
-    <section className="py-24 border-b border-border">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-10 mb-12">
-          <div className="lg:col-span-5">
-            <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-4">§ Stack</div>
-            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] text-foreground">
-              Modern tools, chosen <em className="italic text-accent-ink">on purpose</em>.
-            </h2>
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7 flex items-end">
-            <p className="text-base text-muted-foreground leading-relaxed">
-              We're framework-agnostic and pick the stack that fits your product, team, and operating
-              environment — never the other way around.
-            </p>
-          </div>
+    <section className="py-24 px-6 lg:px-24 bg-background">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-16 max-w-3xl">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-foreground">Engineering Capabilities</h2>
+          <div className="w-20 h-1.5 bg-primary mb-6" />
+          <p className="text-muted-foreground leading-relaxed">
+            We are framework-agnostic and pick the stack that fits your product, team, and operating environment — never the other way around.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 border-t border-border">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
           {groups.map((g) => (
-            <div key={g.label} className="p-8 border-b md:[&:nth-child(odd)]:border-r lg:[&:nth-child(-n+4)]:border-r lg:last:border-r-0 border-border">
-              <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-5">{g.label}</div>
+            <div key={g.label} className="bg-surface p-8">
+              <div className="text-xs uppercase tracking-widest text-primary mb-5 font-display font-semibold">{g.label}</div>
               <ul className="space-y-2">
                 {g.items.map((t) => (
-                  <li key={t} className="font-display text-xl text-foreground">{t}</li>
+                  <li key={t} className="text-base text-foreground font-medium">{t}</li>
                 ))}
               </ul>
             </div>

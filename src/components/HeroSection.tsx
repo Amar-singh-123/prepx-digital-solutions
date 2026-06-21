@@ -1,66 +1,39 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative pt-36 pb-24 border-b border-border">
-      <div className="container mx-auto px-6">
-        {/* Top meta row */}
-        <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-medium mb-16">
-          <span>PrepX Infotech — Est. 2022</span>
-          <span className="hidden sm:inline">IT Services · Consulting · Engineering</span>
-          <span>India / Remote</span>
-        </div>
+    <section className="relative min-h-[90vh] flex items-center bg-ink text-white px-6 lg:px-24 py-32 overflow-hidden">
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary to-transparent" />
+        <div className="absolute inset-0 dot-grid" />
+      </div>
 
-        {/* Editorial headline */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
-          <div className="lg:col-span-9">
-            <h1 className="font-display text-[clamp(2.75rem,8vw,6.5rem)] leading-[0.95] tracking-[-0.02em] text-foreground">
-              Software, built with{" "}
-              <em className="italic text-accent-ink">intent</em> —
-              <br className="hidden md:block" />
-              engineered for the long run.
-            </h1>
+      <div className="container relative z-10 mx-auto max-w-7xl">
+        <div className="max-w-5xl">
+          <p className="text-primary font-semibold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 font-display">
+            Founded 2022 · PrepX Infotech
+          </p>
+          <h1 className="font-display font-bold leading-[1.05] mb-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+            Engineering High-Performance{" "}
+            <span className="text-primary">Digital Ecosystems</span>
+          </h1>
+          <p className="text-base md:text-xl text-white/80 max-w-2xl mb-12 font-light leading-relaxed">
+            PrepX Infotech delivers enterprise-grade software solutions, specialized AI automation, and expert product engineering for global startups and established enterprises.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              to="/contact"
+              className="bg-primary text-white hover:bg-white hover:text-foreground transition-all duration-300 px-8 py-4 font-semibold text-sm uppercase tracking-wider"
+            >
+              Start Your Project
+            </Link>
+            <Link
+              to="/services"
+              className="border border-white/30 hover:border-white px-8 py-4 font-semibold text-sm uppercase tracking-wider transition-all"
+            >
+              Explore Capabilities
+            </Link>
           </div>
-          <div className="lg:col-span-3">
-            <p className="text-base text-muted-foreground leading-relaxed max-w-sm">
-              A software development and technology consulting firm partnering with
-              startups, growing businesses, and enterprises on custom products,
-              modernisation, and dedicated engineering teams.
-            </p>
-          </div>
-        </div>
-
-        {/* CTA + supporting links */}
-        <div className="mt-14 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
-          <Link
-            to="/contact"
-            className="group inline-flex items-center gap-3 px-7 py-4 bg-foreground text-background text-sm font-medium hover:bg-primary transition-colors"
-          >
-            Start a conversation
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </Link>
-          <Link to="/services" className="text-sm font-medium text-foreground underline underline-offset-8 decoration-1 decoration-foreground/30 hover:decoration-primary">
-            What we build
-          </Link>
-          <Link to="/hire-developers" className="text-sm font-medium text-foreground underline underline-offset-8 decoration-1 decoration-foreground/30 hover:decoration-primary">
-            Hire engineers
-          </Link>
-        </div>
-
-        {/* Stat / capability row */}
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 border-t border-border">
-          {[
-            { k: "Founded", v: "2022" },
-            { k: "Industry", v: "IT Services" },
-            { k: "Engagements", v: "Fixed · T&M · Dedicated" },
-            { k: "Reach", v: "India & Global" },
-          ].map((s) => (
-            <div key={s.k} className="py-6 pr-6 border-r border-border last:border-r-0">
-              <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground mb-2">{s.k}</div>
-              <div className="font-display text-2xl text-foreground">{s.v}</div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
