@@ -39,9 +39,10 @@ const Footer = () => {
             <h4 className="text-[11px] uppercase tracking-[0.22em] text-primary mb-4 font-display font-bold">Company</h4>
             <ul className="space-y-2.5">
               {[
-                { label: "About", to: "/about" },
+                { label: "About Us", to: "/about" },
                 { label: "Careers", to: "/careers" },
                 { label: "Portfolio", to: "/portfolio" },
+                { label: "Products", to: "/products" },
                 { label: "Contact", to: "/contact" },
               ].map((l) => (
                 <li key={l.label}>
@@ -55,11 +56,11 @@ const Footer = () => {
             <h4 className="text-[11px] uppercase tracking-[0.22em] text-primary mb-4 font-display font-bold">Services</h4>
             <ul className="space-y-2.5">
               {[
-                { label: "Web Applications", to: "/services" },
-                { label: "Enterprise Software", to: "/services" },
-                { label: "MVP Development", to: "/services" },
-                { label: "AI & Automation", to: "/services" },
-                { label: "Hire Developers", to: "/hire-developers" },
+                { label: "Mobile App Development", to: "/services" },
+                { label: "Staff Augmentation", to: "/hire-developers" },
+                { label: "MVP Development", to: "/mvp-development" },
+                { label: "Custom Software Dev", to: "/services" },
+                { label: "IT Consulting", to: "/services" },
               ].map((l) => (
                 <li key={l.label}>
                   <Link to={l.to} className="text-sm text-white/70 hover:text-white transition-colors">{l.label}</Link>
@@ -69,13 +70,13 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-[11px] uppercase tracking-[0.22em] text-primary mb-4 font-display font-bold">Industries</h4>
+            <h4 className="text-[11px] uppercase tracking-[0.22em] text-primary mb-4 font-display font-bold">Resources</h4>
             <ul className="space-y-2.5">
-              {["SaaS & Startups", "Education", "Healthcare", "Fintech", "Logistics"].map((l) => (
-                <li key={l}>
-                  <Link to="/industries" className="text-sm text-white/70 hover:text-white transition-colors">{l}</Link>
-                </li>
-              ))}
+              <li><Link to="/industries" className="text-sm text-white/70 hover:text-white transition-colors">Industries</Link></li>
+              <li><Link to="/hire-developers" className="text-sm text-white/70 hover:text-white transition-colors">Hire Developers</Link></li>
+              <li><a href="https://wa.me/919504007442" target="_blank" rel="noreferrer" className="text-sm text-white/70 hover:text-white transition-colors">WhatsApp Chat</a></li>
+              <li><a href="#" className="text-sm text-white/70 hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-sm text-white/70 hover:text-white transition-colors">Terms of Service</a></li>
             </ul>
           </div>
         </div>

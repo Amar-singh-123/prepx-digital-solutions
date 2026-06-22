@@ -7,7 +7,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    service: "Enterprise App Dev",
+    service: "General Inquiry",
     message: "",
   });
 
@@ -17,7 +17,7 @@ const ContactSection = () => {
       title: "Inquiry received",
       description: "A member of our team will respond within one business day.",
     });
-    setFormData({ name: "", email: "", service: "Enterprise App Dev", message: "" });
+    setFormData({ name: "", email: "", service: "General Inquiry", message: "" });
   };
 
   return (
@@ -83,13 +83,13 @@ const ContactSection = () => {
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-xs uppercase tracking-widest text-white/50 font-semibold">Service Interested In</label>
+              <label className="text-xs uppercase tracking-widest text-white/50 font-semibold">Subject / Reason</label>
               <select
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 focus:border-primary outline-none transition-all appearance-none"
               >
-                {["Web App Development", "Enterprise App Development", "AI & Intelligent Automation", "MVP Development", "Startup Product Dev", "Hire Freelancers"].map((o) => (
+                {["General Inquiry", "Hire Developers", "MVP Development", "Staff Augmentation", "Mobile App Development", "Partnership", "Careers"].map((o) => (
                   <option key={o} className="bg-ink text-white">{o}</option>
                 ))}
               </select>
