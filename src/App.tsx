@@ -9,6 +9,8 @@ import Services from "./pages/Services.tsx";
 import Industries from "./pages/Industries.tsx";
 import Portfolio from "./pages/Portfolio.tsx";
 import HireDevelopers from "./pages/HireDevelopers.tsx";
+import MVPDevelopment from "./pages/MVPDevelopment.tsx";
+import Products from "./pages/Products.tsx";
 import Careers from "./pages/Careers.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/industries" element={<Industries />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/hire-developers" element={<HireDevelopers />} />
+          <Route path="/mvp-development" element={<MVPDevelopment />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
