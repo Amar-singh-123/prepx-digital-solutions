@@ -5,11 +5,11 @@ import ThemeToggle from "./ThemeToggle";
 import logoIcon from "@/assets/logo-icon.png";
 
 const navLinks = [
-  { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
-  { label: "Industries", to: "/industries" },
-  { label: "Portfolio", to: "/portfolio" },
   { label: "Hire Developers", to: "/hire-developers" },
+  { label: "Products", to: "/products" },
+  { label: "Portfolio", to: "/portfolio" },
+  { label: "About", to: "/about" },
   { label: "Careers", to: "/careers" },
 ];
 
