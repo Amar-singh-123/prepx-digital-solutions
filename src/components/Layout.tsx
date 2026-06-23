@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import WhatsAppButton from "./WhatsAppButton";
+import FloatingChatAssistant from "./FloatingChatAssistant";
+import CookieBanner from "./CookieBanner";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
@@ -16,6 +18,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex-1">{children}</main>
       <Footer />
       <WhatsAppButton />
+      <FloatingChatAssistant />
+      <CookieBanner />
     </div>
   );
 };

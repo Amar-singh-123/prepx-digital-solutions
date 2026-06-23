@@ -100,27 +100,27 @@ const HireDevelopers = () => (
       </div>
     </section>
 
-    <section className="py-24 px-6 lg:px-24 bg-ink text-white">
+    <section className="py-24 px-6 lg:px-24 bg-surface border-y border-border">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 leading-tight">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 leading-tight text-foreground">
             Why hire from <span className="text-primary">PrepX</span>
           </h2>
-          <p className="text-white/70 mb-8 leading-relaxed">
+          <p className="text-muted-foreground mb-8 leading-relaxed">
             We obsess over fit, communication, and outcomes — not headcount.
           </p>
           <Link
             to="/contact"
-            className="inline-block bg-primary text-white hover:bg-white hover:text-foreground px-8 py-4 font-semibold text-sm uppercase tracking-wider transition-all"
+            className="inline-block bg-primary text-white hover:bg-primary/90 px-8 py-4 font-semibold text-sm uppercase tracking-wider transition-all"
           >
             Talk to Our Hiring Team
           </Link>
         </div>
         <ul className="space-y-4">
           {benefits.map((b) => (
-            <li key={b} className="flex gap-4 p-5 bg-white/5 border-l-2 border-primary">
+            <li key={b} className="flex gap-4 p-5 bg-background border border-border border-l-2 border-l-primary shadow-sm">
               <span className="text-primary font-bold">→</span>
-              <span className="text-white/90">{b}</span>
+              <span className="text-foreground">{b}</span>
             </li>
           ))}
         </ul>
