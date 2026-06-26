@@ -1,7 +1,45 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { motion, AnimatePresence } from "framer-motion";
+
+export interface HeroSlide {
+  id: string;
+  imageUrl: string;
+  altText: string;
+  order: number;
+}
 
 const HeroSection = () => {
+  const [slides, setSlides] = useState<HeroSlide[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      try {
+        const q = query(collection(db, "hero_slider"), orderBy("order", "asc"));
+        const data = await getDocs(q);
+        setSlides(data.docs.map(doc => ({ ...doc.data(), id: doc.id } as HeroSlide)));
+      } catch (error) {
+        console.error("Error fetching hero slides:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSlides();
+  }, []);
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
     <section className="relative min-h-[92vh] flex items-center bg-background text-ink pt-24 pb-16 overflow-hidden">
       {/* Animated Curvy Background Canvas */}
@@ -73,26 +111,52 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right: Open-source Image Collage */}
-          <div className="flex-1 w-full relative h-[500px] lg:h-[650px] animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-primary/5 to-transparent rounded-[2rem] transform rotate-3 scale-105 blur-sm" />
+          {/* Right: Dynamic Image Slider */}
+          <div className="flex-1 w-full relative h-[400px] lg:h-[600px] animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-primary/5 to-transparent rounded-[2rem] transform rotate-2 scale-105 blur-sm" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
             
-            <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" 
-              alt="Team collaborating on software development"
-              className="absolute top-0 right-0 w-4/5 h-[65%] object-cover rounded-3xl shadow-soft-xl border border-white/40 animate-float"
-              style={{ animationDuration: '8s' }}
-            />
-            <img 
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
-              alt="Data dashboard"
-              className="absolute bottom-4 left-0 w-3/4 h-[55%] object-cover rounded-3xl shadow-soft-xl border border-white/40 animate-float"
-              style={{ animationDuration: '9s', animationDelay: '-4s' }}
-            />
+            <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-soft-xl border border-white/40 bg-muted/20">
+              {loading ? (
+                <div className="w-full h-full animate-pulse bg-muted/50" />
+              ) : slides.length > 0 ? (
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentIndex}
+                    src={slides[currentIndex].imageUrl}
+                    alt={slides[currentIndex].altText}
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </AnimatePresence>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                  No slides available
+                </div>
+              )}
+            </div>
+
+            {/* Slider Dots */}
+            {slides.length > 1 && (
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-30 bg-black/20 backdrop-blur-md px-3 py-2 rounded-full">
+                {slides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      currentIndex === idx ? "w-6 bg-white" : "w-2 bg-white/50 hover:bg-white/80"
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            )}
             
             {/* Floating decorative elements */}
-            <div className="absolute top-1/4 -left-8 bg-white/90 backdrop-blur-xl p-4 rounded-2xl shadow-glass border border-white/50 flex items-center gap-4 animate-float" style={{ animationDuration: '6s', animationDelay: '-2s' }}>
+            <div className="absolute top-1/4 -left-8 bg-white/90 backdrop-blur-xl p-4 rounded-2xl shadow-glass border border-white/50 flex items-center gap-4 animate-float z-20" style={{ animationDuration: '6s', animationDelay: '-2s' }}>
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold shadow-inner">{"</>"}</div>
               <div>
                 <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Sprint</p>

@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
 
 const WhatsAppButton = () => (
-  <div className="fixed bottom-28 right-6 z-40 flex flex-col items-end gap-2 group">
+  <div className="fixed bottom-48 right-6 z-40 flex flex-col items-end gap-2 group">
     {/* Tooltip on hover */}
     <div className="absolute right-16 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-black/80 text-white text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
       Chat on WhatsApp

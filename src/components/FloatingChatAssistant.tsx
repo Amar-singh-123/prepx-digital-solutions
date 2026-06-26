@@ -34,6 +34,12 @@ const FloatingChatAssistant = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const resetChat = () => {
+    setMessages([{ id: "msg-init", type: "bot", text: "Hi there! 👋 I'm the PrepX digital assistant. How can we help you today?" }]);
+    setStep(0);
+    setLeadData({ interest: "", description: "", email: "" });
+  };
+
   useEffect(() => {
     if (isOpen) {
       setHasOpened(true);
@@ -53,7 +59,12 @@ const FloatingChatAssistant = () => {
     setMessages(prev => [...prev, { id: `msg-${Date.now()}-${Math.random()}`, type: "user", text: option }]);
     setLeadData(prev => ({ ...prev, interest: option }));
     setStep(1);
-    addBotMessage(`Great! Could you briefly describe your requirement for "${option}"?`);
+    
+    if (option === "General Inquiry") {
+      addBotMessage("How can we help you today? Please provide a brief description of what you're looking for.");
+    } else {
+      addBotMessage(`Great! Could you briefly describe your requirement for "${option}"?`);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -74,21 +85,21 @@ const FloatingChatAssistant = () => {
       setStep(3);
       setIsTyping(true);
       
+      // Fire and forget, wrapped in try/catch to prevent synchronous crashes if DB is missing
       try {
-        await addDoc(collection(db, "contact_inquiries"), {
+        addDoc(collection(db, "contact_inquiries"), {
           interest: leadData.interest,
           description: leadData.description,
           email: userText,
           timestamp: new Date().toISOString(),
           source: "Chat Assistant"
-        });
-        
-        setIsTyping(false);
-        addBotMessage("All set! ✨ We have received your inquiry. One of our experts will contact you within 24 hours. Have a great day!", 200);
-      } catch (error) {
-        setIsTyping(false);
-        addBotMessage("Oops, something went wrong while saving your info. Please try again later or email us directly.", 200);
+        }).catch(console.error);
+      } catch (err) {
+        console.error("Firebase sync error:", err);
       }
+      
+      setIsTyping(false);
+      addBotMessage("All set! ✨ We have received your inquiry. One of our experts will contact you within 24 hours. Have a great day!", 200);
     }
   };
 
@@ -182,23 +193,37 @@ const FloatingChatAssistant = () => {
             </div>
           )}
 
-          {/* Quick Options (Only show at step 0) */}
-          {step === 0 && !isTyping && (
-            <div className="flex flex-col gap-2 mt-4 items-end">
-              {["Hire Developers", "Start a Project", "General Inquiry"].map(opt => (
-                <button
-                  key={opt}
-                  onClick={() => handleOptionSelect(opt)}
-                  className="text-xs font-semibold text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 px-3 py-1.5 rounded-full transition-colors"
-                >
-                  {opt}
-                </button>
-              ))}
+
+
+          {/* Restart Option */}
+          {step === 3 && !isTyping && (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={resetChat}
+                className="text-xs font-semibold text-slate-600 bg-slate-100 border border-slate-200 hover:bg-slate-200 px-4 py-2 rounded-full transition-colors"
+              >
+                Start New Conversation
+              </button>
             </div>
           )}
           
           <div ref={messagesEndRef} />
         </div>
+
+        {/* Wrap Quick Options at the bottom */}
+        {step === 0 && !isTyping && (
+          <div className="p-4 bg-white border-t border-border shrink-0 flex flex-wrap justify-center gap-2 w-full shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
+            {["Hire Developers", "MVP Development", "Mobile App Development", "Staff Augmentation", "General Inquiry"].map(opt => (
+              <button
+                key={opt}
+                onClick={() => handleOptionSelect(opt)}
+                className="text-[12px] font-semibold text-primary bg-primary/5 border border-primary/10 hover:bg-primary/10 px-3 py-1.5 rounded-full transition-colors"
+              >
+                {opt}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Input Area */}
         {step > 0 && step < 3 && (

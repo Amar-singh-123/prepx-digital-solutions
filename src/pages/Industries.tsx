@@ -1,21 +1,48 @@
 import { motion } from "framer-motion";
-import { GraduationCap, ShoppingBag, HeartPulse, Banknote, Plane, Factory, Gamepad2, Truck, Building2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import * as LucideIcons from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 
-const industries = [
-  { icon: GraduationCap, title: "Education & EdTech", desc: "LMS, coaching platforms, online assessments and live class infrastructure." },
-  { icon: ShoppingBag, title: "E-Commerce & Retail", desc: "Storefronts, marketplaces, payments, inventory, and omni-channel CRM." },
-  { icon: HeartPulse, title: "Healthcare", desc: "Patient portals, telemedicine, clinical dashboards, and HIPAA-aware design." },
-  { icon: Banknote, title: "Fintech", desc: "Wallets, lending, KYC, trading, and secure payment infrastructure." },
-  { icon: Plane, title: "Travel & Hospitality", desc: "Booking engines, dynamic pricing, multi-currency, and CRM integrations." },
-  { icon: Factory, title: "Manufacturing", desc: "ERP, IoT dashboards, supply-chain visibility, and process automation." },
-  { icon: Gamepad2, title: "Gaming & Web3", desc: "Game backends, blockchain integrations, NFTs and decentralized apps." },
-  { icon: Truck, title: "Logistics", desc: "Fleet tracking, route optimization, dispatch, and warehouse software." },
-  { icon: Building2, title: "Real Estate", desc: "Listing portals, CRM, virtual tours, and lead management tools." },
-];
+type Industry = {
+  id?: string;
+  name: string;
+  icon: string;
+  desc?: string;
+  color?: string;
+  order: number;
+};
 
-const Industries = () => (
+const getIconComponent = (iconName: string) => {
+  const Icon = (LucideIcons as any)[iconName];
+  return Icon || HelpCircle;
+};
+
+const Industries = () => {
+  const [industries, setIndustries] = useState<Industry[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchIndustries = async () => {
+      try {
+        const q = query(collection(db, "industries"), orderBy("order", "asc"));
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Industry[];
+        setIndustries(data);
+      } catch (error) {
+        console.error("Error fetching industries:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchIndustries();
+  }, []);
+
+  return (
   <Layout>
     <PageHeader
       eyebrow="Industries"
@@ -26,26 +53,41 @@ const Industries = () => (
     <section className="py-24">
       <div className="container mx-auto px-6">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {industries.map((it, i) => (
-            <motion.div
-              key={it.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="p-7 rounded-2xl border border-border bg-card shadow-card hover:shadow-hover hover:border-primary/30 transition-all"
-            >
-              <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-5 shadow-lg">
-                <it.icon className="w-6 h-6 text-primary-foreground" />
+          {loading ? (
+            Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="p-7 rounded-2xl border border-border bg-card shadow-card animate-pulse">
+                <div className="w-12 h-12 rounded-xl bg-muted mb-5"></div>
+                <div className="h-6 bg-muted rounded w-3/4 mb-3"></div>
+                <div className="h-4 bg-muted rounded w-full mb-2"></div>
+                <div className="h-4 bg-muted rounded w-5/6"></div>
               </div>
-              <h3 className="font-display font-bold text-xl text-foreground mb-2">{it.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{it.desc}</p>
-            </motion.div>
-          ))}
+            ))
+          ) : (
+            industries.map((it, i) => {
+              const IconComp = getIconComponent(it.icon);
+              return (
+                <motion.div
+                  key={it.id || it.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="p-7 rounded-2xl border border-border bg-card shadow-card hover:shadow-hover hover:border-primary/30 transition-all"
+                >
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${it.color || 'from-primary to-primary/80'} flex items-center justify-center mb-5 shadow-lg`}>
+                    <IconComp className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-display font-bold text-xl text-foreground mb-2">{it.name}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{it.desc || "No description provided."}</p>
+                </motion.div>
+              );
+            })
+          )}
         </div>
       </div>
     </section>
-  </Layout>
-);
+    </Layout>
+  );
+};
 
 export default Industries;
