@@ -25,6 +25,7 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
+  return (
     <section id="testimonials" className="py-24 bg-background relative overflow-hidden">
       <div className="container relative mx-auto px-6 lg:px-24 max-w-7xl">
         <div className="text-center mb-16 max-w-3xl mx-auto animate-fade-in-up">
@@ -82,6 +83,7 @@ const TestimonialsSection = () => {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-64 bg-gradient-to-l from-background to-transparent z-10" />
       </div>
     </section>
+  );
 };
 
 export default TestimonialsSection;
